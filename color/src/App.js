@@ -13,12 +13,4 @@ function App() {
   );
 }
 
-export const colors = [
-  {color: "red"},
-  {color: "blue"},
-  {color: "white"}
-]
-
-App.defaultProps = { colors };
-
 export default App;

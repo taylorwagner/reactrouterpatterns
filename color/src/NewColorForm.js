@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 const NewColorForm = ({addColor}) => {
-    const [formData, setFormData] = useState({
-        color: ""
-    });
+    const [formData, setFormData] = useState({color: "", hex:"#ffffff"});
+    const history = useHistory();
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -17,7 +17,7 @@ const NewColorForm = ({addColor}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         addColor({...formData, id: uuidv4()});
-        setFormData({color: ""});
+        history.push("/colors");
     };
 
     return (
@@ -31,6 +31,16 @@ const NewColorForm = ({addColor}) => {
                         placeholder="color"
                         type="text"
                         value={formData.color}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="hex">Color value</label>
+                    <input
+                        id="hex"
+                        name="hex"
+                        type="color"
+                        value={formData.hex}
                         onChange={handleChange}
                     />
                 </div>
